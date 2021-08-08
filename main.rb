@@ -1,3 +1,61 @@
+stages = [%(
+   ________________
+   |              |
+                  |
+                  |
+                  |
+                  |
+                  |
+), %(
+   ________________
+   |              |
+   O              |
+                  |
+                  |
+                  |
+                  |
+), %(
+   ________________
+   |              |
+   O              |
+   |              |
+   |              |
+                  |
+                  |
+), %(
+   ________________
+   |              |
+   O              |
+  /|              |
+   |              |
+                  |
+                  |
+), %(
+   ________________
+   |              |
+   O              |
+  /|\             |
+   |              |
+                  |
+                  |
+), %(
+   ________________
+   |              |
+   O              |
+  /|\             |
+   |              |
+  /               |
+                  |
+), %(
+   ________________
+   |              |
+   O              |
+  /|\             |
+   |              |
+  / \             |
+                  |
+)]
+
 def get_word(file)
   word = file.sample[0..-3]
   word = get_word(file) unless word.size >= 5 && word.size <= 12
@@ -22,9 +80,10 @@ lines = File.readlines(fname)
 word = get_word(lines)
 hidden_word = generate_hidden_word(word)
 incorrect_letters = []
-puts "#{hidden_word.join(' ')}"
-i = 1
-until i > 6
+i = 0
+until i > 5
+  puts "Word: #{hidden_word.join(' ')}"
+  puts stages[i]
   print 'Letter? '
   letter = gets.chomp[0]
   if word.include?(letter)
@@ -33,6 +92,6 @@ until i > 6
     i += 1
     incorrect_letters << letter
   end
-  puts "#{hidden_word.join(' ')}"
-  puts "Incorrect letters: #{incorrect_letters.join('-')}"
+  puts "Incorrect letters: #{incorrect_letters.join('-')}\n"
 end
+puts "The word was: #{word}" if i == 6
