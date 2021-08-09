@@ -14,15 +14,16 @@ class Game
   def start_game
     until @turns > 5
       puts "Word: #{@hidden_word.join(' ')}"
+      puts "Incorrect letters: #{@incorrect_letters.join('-')}"
       puts Draw::STAGES[@turns]
       print 'Letter? '
       letter = gets.chomp.downcase
       if letter == 'ss'
         save_game
+        puts 'Game saved. Goodbye! :)'
         break
       end
       verify_letter(letter)
-      puts "Incorrect letters: #{@incorrect_letters.join('-')}"
     end
     game_lost if @turns == 6
   end
